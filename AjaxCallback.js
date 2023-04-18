@@ -1,9 +1,9 @@
-let XMLHttpRequest = require("xmlhttprequest"),XMLHttpRequest;
+let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 function makeAJAXCall(methodType, url, callback, async = true, data = null){
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
-        console.log("State Changes Called,Ready State: "+
-                     xhr.readyState+" Status:"+xhr,status);
+        console.log("State Changes Called. Ready State: "+
+                     xhr.readyState+" Status:"+xhr.status);
         if(xhr.readyState === 4){
             //Matching all 200 Series Responses
             if(xhr.status === 200 || xhr.status === 201){
@@ -22,8 +22,14 @@ function makeAJAXCall(methodType, url, callback, async = true, data = null){
     console.log(methodType+" request sent to the server");        
 }
 
+const getURL =  "https://127.0.0.1:3000/employees/1";
+function userDeleted(data){
+    console.log("User Deleted:"+data)
+}
+makeAJAXCall("DELEET", deleteURL, userDeleted, false);
 
-const deleteURL =  "https://localhost:3000/employees/1";
+
+const deleteURL =  "https://localhost:3000/employees/4";
 function userDeleted(data){
     console.log("User Deleted:"+data)
 }
